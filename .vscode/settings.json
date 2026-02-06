@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["MVPS"]
+  "cSpell.words": ["AORN", "databind", "gradlew", "javac", "jenv", "Multiplatform", "MVPS", "shellenv"],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

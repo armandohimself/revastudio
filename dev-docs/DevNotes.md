@@ -45,7 +45,7 @@ This is a full-stack web application using Spring Boot + Angular with a stretch 
 - [ ] X. Run `npm install` to install packages.
 - [ ] X. Run `npm run start` to run frontend and start to see angular project.
 - [ ] X. Run `npm i -D vitest @vitest/coverage-v8 jsdom` because we no longer use Jasmine or Karma for testing and instead use Vitest.
-- [ ] X. Run `
+- [ ] X. Run `npm rm karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter jasmine-core`
 - [ ] X. Add `client/` -> add package.json dependencies (Jasmine, Karma for Angular).
 - [ ] X. Configure test runners and coverage reporting.
 
@@ -53,6 +53,11 @@ This is a full-stack web application using Spring Boot + Angular with a stretch 
 
 **Spring Boot:** In server, run gradle test or ./gradlew test
 **Angular:** In client, run ng test or npm test
+
+
+
+
+
 
 
 

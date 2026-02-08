@@ -42,8 +42,10 @@ This is a full-stack web application using Spring Boot + Angular with a stretch 
 - [ ] X. Install npm to make sure you can install Angular CLI with `npm install -g npm` and `npm -v` to verify you have it installed globally on your machine.
 - [ ] X. Install Angular CLI if not already installed with `npm install -g @angular/cli@latest`.
 - [ ] X. Install new Angular project in client using `ng new <project name> --directory .`.
-- [ ] X. Run `npm install` to install packages. 
-- [ ]
+- [ ] X. Run `npm install` to install packages.
+- [ ] X. Run `npm run start` to run frontend and start to see angular project.
+- [ ] X. Run `npm i -D vitest @vitest/coverage-v8 jsdom` because we no longer use Jasmine or Karma for testing and instead use Vitest.
+- [ ] X. Run `
 - [ ] X. Add `client/` -> add package.json dependencies (Jasmine, Karma for Angular).
 - [ ] X. Configure test runners and coverage reporting.
 

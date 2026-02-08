@@ -13,7 +13,7 @@ Gradle supports Android, Java, Kotlin Multiplatform, Groovy, Scala, Javascript, 
 
 # Gradle Wrapper
 
-# JDKs (Java Development Kits)
+# JDKs (Java Development Kits) & `jenv`
 
 You can have multiple JDKs installed on your machine.
 
@@ -28,32 +28,9 @@ your my MacBook picks a Java version based on: <br>
 (a) what your shell environment says (JAVA_HOME, PATH) and <br>
 (b) what the tool itself prefers/embeds/configures.
 
-> [!NOTE] My Scenario
->
-> Homebrew (Homebrew package manager) installed OpenJDK 25 when I ran `brew install gradle`
->
-> but my terminal still points to JDK 23 because my JAVA_HOME/PATH still points there.
+## Installing jenv
 
 
-I was trying to update VS Code settings at:
-
-```json
-// ~/Library/Application Support/Code/User/profiles/-2c624891/settings.json
-
-"java.configuration.runtimes": [
-    {
-      "name": "JavaSE-25",
-      "path": "/Library/Java/JavaVirtualMachines/" // <- But I don't have JDK 25 in here when trying to point to it...
-    }
-  ],
-```
-
-
-
-
-# Prerequisites
-
-- JDK 17+
 
 # Commands
 

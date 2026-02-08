@@ -38,9 +38,12 @@ This is a full-stack web application using Spring Boot + Angular with a stretch 
 - [ ] 1. [Have spring initializer website](https://start.spring.io/) create `build.gradle` for you and place it at root level if you don't have one.
 - [ ] 2. Run `./gradlew <clean> build` or `gradle build` command in terminal at server root level to build project and download all dependencies listed in `build.gradle` file.
 - [ ] 3. Verify installation. You should see a `build/` folder and `.gradle/` cache created; no errors means success.
-- [ ] X. Install Angular CLI if not already installed with ``.
-- [ ] X. Install new Angular project in client using `ng new client`.
-- [ ] X. In `server/` -> add testing dependencies to Gradle (JUnit 5, Mockito, Spring Boot Test).
+- [ ] X. Make sure you have Node.js installed on your machine (npm comes with Node.js). I'm using `nvm` as a node manager to install and switch between versions.
+- [ ] X. Install npm to make sure you can install Angular CLI with `npm install -g npm` and `npm -v` to verify you have it installed globally on your machine.
+- [ ] X. Install Angular CLI if not already installed with `npm install -g @angular/cli@latest`.
+- [ ] X. Install new Angular project in client using `ng new <project name> --directory .`.
+- [ ] X. Run `npm install` to install packages. 
+- [ ]
 - [ ] X. Add `client/` -> add package.json dependencies (Jasmine, Karma for Angular).
 - [ ] X. Configure test runners and coverage reporting.
 

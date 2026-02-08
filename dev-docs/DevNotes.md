@@ -44,37 +44,15 @@ This is a full-stack web application using Spring Boot + Angular with a stretch 
 - [ ] X. Install new Angular project in client using `ng new <project name> --directory .`.
 - [ ] X. Run `npm install` to install packages.
 - [ ] X. Run `npm run start` to run frontend and start to see angular project.
-- [ ] X. Run `npm i -D vitest @vitest/coverage-v8 jsdom` because we no longer use Jasmine or Karma for testing and instead use Vitest.
+- [ ] X. Run `npm i -D vitest @vitest/coverage-v8 happy-dom` because we no longer use Jasmine or Karma for testing and instead use Vitest.
 - [ ] X. Run `npm rm karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter jasmine-core`
-- [ ] X. Add `client/` -> add package.json dependencies (Jasmine, Karma for Angular).
-- [ ] X. Configure test runners and coverage reporting.
 
 #### How to Run Tests Once Installed
 
-**Spring Boot:** In server, run gradle test or ./gradlew test
-**Angular:** In client, run ng test or npm test
+**Spring Boot:** In server, run `gradle test` or `./gradlew test`.
+**Angular:** In client, run `npm test`.
 
-
-
-
-
-
-
-
-Steps for Angular Frontend
-Locate or create package.json — Navigate to /Users/armandoarteaga/Github Repos/ARevatureLearning/revastudio/client/ directory; check if package.json exists.
-
-Check for existing test dependencies — If Angular CLI created the project, Jasmine and Karma should already be there (search package.json for @angular/core, jasmine, karma).
-
-Add missing dependencies (if needed) — If not present, add to devDependencies in package.json:
-
-"jasmine-core": "^4.5.0"
-"karma": "^6.4.0"
-"karma-jasmine": "^5.1.0"
-"karma-chrome-launcher": "^3.1.1"
-Run npm install — Open terminal in client and run: npm install (this downloads all dependencies).
-
-Verify installation — You should see a node_modules/ folder created; no errors means success.
+Note: The Vitest config uses ESM and lives at `client/vitest.config.mts`.
 
 ### `Write API Layer Tests`
 

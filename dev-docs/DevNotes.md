@@ -1,91 +1,536 @@
-<!-- markdownlint-disable MD042 -->
+# 🛠️ Development Notes
 
-# Dev Notes
+> Test-driven development workflow for RevaStudio full-stack application
 
-This is a full-stack web application using Spring Boot + Angular with a stretch goal to integrate Ionic for a mobile experience.
-
-## How To Start
-
-- [ ] [Set Up Project Skeletons](#set-up-project-skeletons)
-- [ ] [Write API Layer Tests](#write-api-layer-tests)
-- [ ] [Pass API Layer](#pass-api-layer)
-- [ ] [Write Repository Test](#write-repository-test)
-- [ ] [Pass Repository Layer](#pass-repository-layer)
-- [ ] [Write Controller Tests with Mocked Services](#write-controller-tests-with-mocked-services)
-- [ ] [Pass Controller Tests](#pass-controller-tests)
-- [ ] [Write Angular Service Tests](#write-angular-service-tests)
-- [ ] [Write Angular Component Tests](#write-angular-component-tests)
-- [ ] [Pass Angular Components to Pass Tests](#pass-angular-components-to-pass-tests)
-
-### Test Order & Workflow
-
-- Innermost → Outermost: Services → Repositories → Controllers (backend); Services → Components (frontend)
-- Per feature: Write all tests for one feature's service, then implement; move to next layer
-- Integration: Add end-to-end tests last (e.g., full login flow, customer viewing tracks) after unit layers are solid
+**Stack:** Spring Boot + Angular (with optional Ionic for mobile)
 
 ---
 
-### `Set Up Project Skeletons`
+## 🚀 Quick Start Guide
 
-> [!IMPORTANT] DEV NOTE
->
-> Make sure you have the right JDK version installed, your terminal pointing to the version you want to use, and correct `JAVA_HOME`/`PATH` are set up.
->
-> You can reference [JDKs (Java Development Kits)](./Gradle.md#jdks-java-development-kits-jenv) for more information on your prerequisites.
+Follow this checklist to set up and build the project using a test-driven approach:
 
-**ACTION ITEMS:**
+### Phase 1: Project Setup
 
-- [ ] 1. [Have spring initializer website](https://start.spring.io/) create `build.gradle` for you and place it at root level if you don't have one.
-- [ ] 2. Run `./gradlew <clean> build` or `gradle build` command in terminal at server root level to build project and download all dependencies listed in `build.gradle` file.
-- [ ] 3. Verify installation. You should see a `build/` folder and `.gradle/` cache created; no errors means success.
-- [ ] X. Make sure you have Node.js installed on your machine (npm comes with Node.js). I'm using `nvm` as a node manager to install and switch between versions.
-- [ ] X. Install npm to make sure you can install Angular CLI with `npm install -g npm` and `npm -v` to verify you have it installed globally on your machine.
-- [ ] X. Install Angular CLI if not already installed with `npm install -g @angular/cli@latest`.
-- [ ] X. Install new Angular project in client using `ng new <project name> --directory .`.
-- [ ] X. Run `npm install` to install packages.
-- [ ] X. Run `npm run start` to run frontend and start to see angular project.
-- [ ] X. Run `npm i -D vitest @vitest/coverage-v8 happy-dom` because we no longer use Jasmine or Karma for testing and instead use Vitest.
-- [ ] X. Run `npm rm karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter jasmine-core`
+- [ ] [Set Up Project Skeletons](#1-set-up-project-skeletons)
 
-#### How to Run Tests Once Installed
+### Phase 2: Backend Development (Inside-Out)
 
-**Spring Boot:** In server, run `gradle test` or `./gradlew test`.
-**Angular:** In client, run `npm test`.
+- [ ] [Write Service Layer Tests](#2-write-service-layer-tests)
+- [ ] [Implement Service Layer](#3-implement-service-layer)
+- [ ] [Write Repository Tests](#4-write-repository-tests)
+- [ ] [Implement Repository Layer](#5-implement-repository-layer)
+- [ ] [Write Controller Tests](#6-write-controller-tests)
+- [ ] [Implement Controllers](#7-implement-controllers)
 
-Note: The Vitest config uses ESM and lives at `client/vitest.config.mts`.
+### Phase 3: Frontend Development
 
-### `Write API Layer Tests`
+- [ ] [Write Angular Service Tests](#8-write-angular-service-tests)
+- [ ] [Write Angular Component Tests](#9-write-angular-component-tests)
+- [ ] [Implement Angular Components](#10-implement-angular-components)
 
-Create test classes for AuthService, CustomerService, EmployeeService, SupportTicketService with mock Repository dependencies; test business logic paths (login success/failure, fetch tracks for customer, calculate sales metrics).
+### Phase 4: Integration & E2E
 
-### `Pass API Layer`
+- [ ] [Write End-to-End Tests](#11-end-to-end-tests)
+- [ ] [Integration Testing](#12-integration-testing)
 
-Write actual service code to make tests green; lean implementation without over-engineering.
+---
 
-### `Write Repository Test`
+## 📐 Test-Driven Development Workflow
 
-Create integration tests for Spring Data repositories using an in-memory H2 database or test SQLite; test custom query methods (e.g., findTracksByCustomerId(), findSalesMetricsByEmployeeId()).
+### Testing Strategy: Innermost → Outermost
 
-### `Pass Repository Layer`
+```
+Backend:  Services → Repositories → Controllers
+Frontend: Services → Components
+```
+
+**Per Feature Approach:**
+
+1. Write all tests for one feature's service layer
+2. Implement the service to pass tests
+3. Move to the next layer (repository, controller)
+4. Repeat for each feature
+
+**Integration Last:**
+
+Add end-to-end tests after unit layers are solid:
+
+- Full login flow
+- Customer viewing tracks
+- Employee managing tickets
+
+---
+
+## 📋 Detailed Steps
+
+### 1. Set Up Project Skeletons
+
+> **⚠️ Important:** Ensure prerequisites are met before starting
+
+#### Prerequisites Check
+
+Before you begin, verify:
+
+- ✅ **Correct JDK version** installed
+- ✅ **Terminal pointing** to the right Java version
+- ✅ **`JAVA_HOME`** and **`PATH`** properly configured
+
+📖 **Reference:** [JDKs & Environment Setup](Gradle.md#-jdks--environment-management)
+
+#### Backend Setup (Spring Boot)
+
+**Step 1: Generate Project**
+
+Use [Spring Initializr](https://start.spring.io/) to create `build.gradle` and place it at the server root.
+
+**Step 2: Build & Download Dependencies**
+
+```bash
+cd server
+./gradlew clean build
+```
+
+**Step 3: Verify Installation**
+
+✅ Success indicators:
+
+- `build/` folder created
+- `.gradle/` cache created
+- No errors in terminal
+
+#### Frontend Setup (Angular)
+
+**Step 1: Install Node.js & npm**
+
+```bash
+# Using nvm (recommended)
+nvm install 18
+nvm use 18
+
+# Verify installations
+node -v
+npm -v
+```
+
+**Step 2: Install Angular CLI**
+
+```bash
+npm install -g @angular/cli@latest
+ng version
+```
+
+**Step 3: Create Angular Project**
+
+```bash
+cd client
+ng new revastudio --directory .
+```
+
+**Step 4: Install Dependencies**
+
+```bash
+npm install
+```
+
+**Step 5: Switch to Vitest**
+
+Remove Jasmine/Karma and install Vitest:
+
+```bash
+# Install Vitest
+npm i -D vitest @vitest/coverage-v8 happy-dom
+
+# Remove old testing tools
+npm rm karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter jasmine-core
+```
+
+**Step 6: Verify Setup**
+
+```bash
+# Start dev server
+npm run start
+
+# Run tests
+npm test
+```
+
+---
+
+### Running Tests
+
+#### Spring Boot
+
+```bash
+cd server
+./gradlew test          # Run all tests
+./gradlew cucumberTest  # Run BDD tests
+```
+
+#### Angular
+
+```bash
+cd client
+npm test               # Run Vitest tests
+npm run coverage       # Generate coverage report
+```
+
+> **Note:** Vitest config is at `client/vitest.config.mts`
+
+---
+
+### 2. Write Service Layer Tests
+
+**Focus:** Business logic with mocked repository dependencies
+
+**Test Coverage:**
+
+- ✅ `AuthService`: Login success/failure scenarios
+- ✅ `CustomerService`: Fetch tracks for specific customer
+- ✅ `EmployeeService`: Calculate and retrieve sales metrics
+- ✅ `SupportTicketService`: Create, view, respond, close tickets
+
+**Example Test Structure:**
+
+```java
+@ExtendWith(MockitoExtension.class)
+class CustomerServiceTest {
+    @Mock
+    private TrackRepository trackRepository;
+
+    @InjectMocks
+    private CustomerService customerService;
+
+    @Test
+    void shouldReturnTracksForCustomer() {
+        // Arrange
+        Long customerId = 1L;
+        List<Track> mockTracks = Arrays.asList(/* ... */);
+        when(trackRepository.findByCustomerId(customerId))
+            .thenReturn(mockTracks);
+
+        // Act
+        List<Track> result = customerService.getTracksByCustomer(customerId);
+
+        // Assert
+        assertThat(result).hasSize(mockTracks.size());
+        verify(trackRepository).findByCustomerId(customerId);
+    }
+}
+```
+
+---
+
+### 3. Implement Service Layer
+
+Write service code to make tests pass — **lean implementation**, avoid over-engineering.
+
+**Guiding Principles:**
+
+- ✅ Make tests green
+- ✅ Keep it simple
+- ✅ Refactor only when all tests pass
+- ❌ Don't add features not covered by tests
+
+---
+
+### 4. Write Repository Tests
+
+**Focus:** Database interactions with test database (H2 or SQLite)
+
+**Test Coverage:**
+
+- Custom query methods
+- Data persistence
+- Query correctness
+
+**Example Test:**
+
+```java
+@DataJpaTest
+class TrackRepositoryTest {
+    @Autowired
+    private TrackRepository trackRepository;
+
+    @Test
+    void shouldFindTracksByCustomerId() {
+        // Arrange
+        Long customerId = 1L;
+
+        // Act
+        List<Track> tracks = trackRepository.findByCustomerId(customerId);
+
+        // Assert
+        assertThat(tracks).isNotEmpty();
+        assertThat(tracks).allMatch(track ->
+            track.getInvoiceLines().stream()
+                .anyMatch(il -> il.getInvoice().getCustomerId().equals(customerId))
+        );
+    }
+}
+```
+
+---
+
+### 5. Implement Repository Layer
 
 Add repository interfaces and custom query logic.
 
-### `Write Controller Tests with Mocked Services`
+**Example:**
 
-Create REST controller tests using MockMvc; mock service layer and verify endpoints, HTTP status codes, request/response payloads, and authentication guards.
+```java
+public interface TrackRepository extends JpaRepository<Track, Long> {
+    @Query("SELECT DISTINCT t FROM Track t " +
+           "JOIN t.invoiceLines il " +
+           "JOIN il.invoice i " +
+           "WHERE i.customer.id = :customerId")
+    List<Track> findByCustomerId(@Param("customerId") Long customerId);
+}
+```
 
-### `Pass Controller Tests`
+---
+
+### 6. Write Controller Tests
+
+**Focus:** REST endpoints with mocked services
+
+**Test Coverage:**
+
+- HTTP status codes
+- Request/response payloads
+- Authentication guards
+- Endpoint behavior
+
+**Example Test:**
+
+```java
+@WebMvcTest(CustomerController.class)
+class CustomerControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private CustomerService customerService;
+
+    @Test
+    void shouldReturnTracksForAuthenticatedCustomer() throws Exception {
+        // Arrange
+        Long customerId = 1L;
+        List<Track> mockTracks = Arrays.asList(/* ... */);
+        when(customerService.getTracksByCustomer(customerId))
+            .thenReturn(mockTracks);
+
+        // Act & Assert
+        mockMvc.perform(get("/api/customers/{id}/tracks", customerId)
+                .header("Authorization", "Bearer " + validJwtToken))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$.length()").value(mockTracks.size()));
+    }
+}
+```
+
+---
+
+### 7. Implement Controllers
 
 Build REST endpoints that satisfy controller test assertions.
 
-### `Write Angular Service Tests`
+**Example:**
 
-Create unit tests for HttpClient calls, token handling, and data transformation; mock HTTP responses.
+```java
+@RestController
+@RequestMapping("/api/customers")
+public class CustomerController {
+    private final CustomerService customerService;
 
-### `Write Angular Component Tests`
+    @GetMapping("/{id}/tracks")
+    public ResponseEntity<List<TrackDTO>> getCustomerTracks(
+            @PathVariable Long id,
+            @AuthenticationPrincipal User currentUser) {
+        // Verify user can only access their own data
+        if (!currentUser.getId().equals(id)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
 
-Create component tests for login, dashboards, ticket views; mock service calls and test UI logic, routing, and user interactions.
+        List<Track> tracks = customerService.getTracksByCustomer(id);
+        return ResponseEntity.ok(tracks.stream()
+            .map(TrackDTO::from)
+            .collect(Collectors.toList()));
+    }
+}
+```
 
-### `Pass Angular Components to Pass Tests`
+---
+
+### 8. Write Angular Service Tests
+
+**Focus:** HTTP client calls, token handling, data transformation
+
+**Example Test:**
+
+```typescript
+describe("CustomerService", () => {
+  let service: CustomerService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [CustomerService],
+    });
+    service = TestBed.inject(CustomerService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  it("should fetch customer tracks", () => {
+    const mockTracks = [
+      /* ... */
+    ];
+    const customerId = 1;
+
+    service.getCustomerTracks(customerId).subscribe((tracks) => {
+      expect(tracks.length).toBe(mockTracks.length);
+    });
+
+    const req = httpMock.expectOne(`/api/customers/${customerId}/tracks`);
+    expect(req.request.method).toBe("GET");
+    req.flush(mockTracks);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
+  });
+});
+```
+
+---
+
+### 9. Write Angular Component Tests
+
+**Focus:** UI logic, routing, user interactions
+
+**Example Test:**
+
+```typescript
+describe("CustomerDashboardComponent", () => {
+  let component: CustomerDashboardComponent;
+  let fixture: ComponentFixture<CustomerDashboardComponent>;
+  let mockCustomerService: jasmine.SpyObj<CustomerService>;
+
+  beforeEach(() => {
+    mockCustomerService = jasmine.createSpyObj("CustomerService", ["getCustomerTracks"]);
+
+    TestBed.configureTestingModule({
+      declarations: [CustomerDashboardComponent],
+      providers: [{ provide: CustomerService, useValue: mockCustomerService }],
+    });
+
+    fixture = TestBed.createComponent(CustomerDashboardComponent);
+    component = fixture.componentInstance;
+  });
+
+  it("should display tracks on load", () => {
+    const mockTracks = [
+      /* ... */
+    ];
+    mockCustomerService.getCustomerTracks.and.returnValue(of(mockTracks));
+
+    fixture.detectChanges();
+
+    expect(component.tracks.length).toBe(mockTracks.length);
+  });
+});
+```
+
+---
+
+### 10. Implement Angular Components
 
 Build components incrementally, test-first.
+
+**Workflow:**
+
+1. Write component test
+2. Implement minimum code to pass
+3. Refactor if needed
+4. Repeat for next feature
+
+---
+
+### 11. End-to-End Tests
+
+**Focus:** Full user workflows across frontend and backend
+
+**Example Scenarios:**
+
+- User login → View dashboard → Logout
+- Customer views tracks → Sends support ticket → Sees response
+- Employee views sales metrics → Responds to ticket → Closes ticket
+
+**Tools:**
+
+- Cucumber for BDD scenarios
+- Selenium for browser automation
+- REST Assured for API validation
+
+---
+
+### 12. Integration Testing
+
+**Focus:** Verify all layers work together
+
+**Test Coverage:**
+
+- Database ↔ Repository ↔ Service ↔ Controller
+- Frontend ↔ Backend API integration
+- Authentication flow end-to-end
+- Error handling across layers
+
+---
+
+## 📚 Related Documentation
+
+- 🎯 [Project Requirements](MediaManager.md) — Feature specifications
+- 📖 [User Stories](UserStories.md) — Detailed user requirements
+- ⚙️ [Gradle Configuration](Gradle.md) — Build tool reference
+- 📘 [Spring Boot Help](HELP.md) — Annotations and commands
+
+---
+
+## 💡 Development Tips
+
+### Best Practices
+
+✅ **Write tests first** — TDD enforces better design
+✅ **One feature at a time** — Complete vertical slices
+✅ **Commit often** — Small, focused commits
+✅ **Run tests frequently** — Catch issues early
+✅ **Refactor when green** — Improve code after tests pass
+
+### Common Pitfalls
+
+❌ **Skip writing tests** — Leads to fragile code
+❌ **Test too late** — Harder to retrofit tests
+❌ **Mock everything** — Use real objects when reasonable
+❌ **Ignore failing tests** — Fix immediately
+❌ **Over-engineer** — Implement only what tests require
+
+---
+
+## 🎯 Success Metrics
+
+Track your progress:
+
+- [ ] All unit tests passing (services, repositories)
+- [ ] All controller tests passing
+- [ ] All Angular tests passing
+- [ ] Integration tests passing
+- [ ] E2E scenarios passing
+- [ ] Code coverage > 80%
+- [ ] No critical security vulnerabilities
+- [ ] Application runs end-to-end
+
+---
+
+> **🚀 Ready to start?** Follow the checklist from the top and work through each phase systematically!

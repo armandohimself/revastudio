@@ -1,27 +1,107 @@
-# Revastudio
+# 🎨 RevaStudio Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
+> Angular frontend for the RevaStudio Media Management Platform
 
-## Development server
+Built with [Angular CLI](https://github.com/angular/angular-cli) v13.0.4 • Testing with [Vitest](https://vitest.dev/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Quick Start
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Development Server
 
-## Build
+```bash
+npm run start
+# or
+ng serve
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Navigate to **http://localhost:4200/** — the app auto-reloads on file changes.
 
-## Running unit tests
+### Testing
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm test          # Run Vitest tests
+npm run coverage  # Generate coverage report
+```
 
-## Running end-to-end tests
+> **Note:** This project uses **Vitest** instead of Karma/Jasmine for faster, more modern testing.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 📦 Project Structure
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+src/
+├── app/
+│   ├── app-routing.module.ts    # Route configuration
+│   ├── app.component.ts         # Root component
+│   └── app.routes.ts            # Standalone route definitions
+├── assets/                      # Static assets
+├── environments/                # Environment configs
+│   ├── environment.ts           # Development
+│   └── environment.prod.ts      # Production
+└── styles.scss                  # Global styles
+```
+
+---
+
+## 🛠️ Angular CLI Commands
+
+### Code Generation
+
+```bash
+# Components
+ng generate component feature/component-name
+ng g c feature/component-name
+
+# Services
+ng generate service services/service-name
+ng g s services/service-name
+
+# Other artifacts
+ng g directive|pipe|guard|interface|enum|module <name>
+```
+
+### Build
+
+```bash
+# Development build
+ng build
+
+# Production build (optimized)
+ng build --configuration production
+```
+
+Build artifacts are stored in the `dist/` directory.
+
+---
+
+## 📚 Key Technologies
+
+| Technology     | Purpose               |
+| -------------- | --------------------- |
+| **Angular 13** | Frontend framework    |
+| **TypeScript** | Type-safe development |
+| **Vitest**     | Unit testing          |
+| **SCSS**       | Styling               |
+| **RxJS**       | Reactive programming  |
+
+---
+
+## 🔗 Useful Links
+
+- 📖 [Angular CLI Documentation](https://angular.io/cli)
+- 📖 [Angular Style Guide](https://angular.io/guide/styleguide)
+- 🧪 [Vitest Documentation](https://vitest.dev/)
+- 🎯 [Project Requirements](../dev-docs/MediaManager.md)
+- 📝 [Development Workflow](../dev-docs/DevNotes.md)
+
+---
+
+## 💡 Tips
+
+- Use `ng help` for quick CLI reference
+- Run `ng lint` to check code quality (if configured)
+- Check [../dev-docs/DevNotes.md](../dev-docs/DevNotes.md) for the development workflow
+- See [../dev-docs/UserStories.md](../dev-docs/UserStories.md) for feature requirements

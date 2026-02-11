@@ -1,0 +1,12 @@
+aaron-bond.better-comments
+davidanson.vscode-markdownlint
+eamodio.gitlens
+github.copilot-chat
+marlosirapuan.nord-deep
+ms-vscode.vscode-speech
+oderwat.indent-rainbow
+pkief.material-icon-theme
+sinandev.levelup
+streetsidesoftware.code-spell-checker
+usernamehw.errorlens
+yzhang.markdown-all-in-one

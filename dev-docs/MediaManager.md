@@ -1,3 +1,5 @@
+<!-- markdownlint-disable -->
+
 # 🎵 Media Manager Project
 
 > RevaStudio's contract to rebuild Chinook Media Company's web platform

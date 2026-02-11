@@ -1,3 +1,5 @@
+<!-- markdownlint-disable -->
+
 # 🎨 RevaStudio Client
 
 > Angular frontend for the RevaStudio Media Management Platform

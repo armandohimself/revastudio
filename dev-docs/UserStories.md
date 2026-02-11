@@ -1,3 +1,5 @@
+<!-- markdownlint-disable -->
+
 # 📖 User Stories
 
 > Feature requirements organized by user role

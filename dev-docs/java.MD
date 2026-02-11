@@ -1,3 +1,5 @@
+<!-- markdownlint-disable -->
+
 # Java Related Code Cheat Sheet
 
 ## `Static Keyword`

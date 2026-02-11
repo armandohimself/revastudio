@@ -1,3 +1,5 @@
+<!-- markdownlint-disable -->
+
 # 🛠️ Development Notes
 
 > Test-driven development workflow for RevaStudio full-stack application
@@ -16,6 +18,8 @@ Follow this checklist to set up and build the project using a test-driven approa
 
 ### Phase 2: Backend Development (Inside-Out)
 
+- [ ] [Create Entities Using Annotations (JPA + Lombok)]()
+- [ ] [Create Basic Repositories (Spring Data JPA)]()
 - [ ] [Write Service Layer Tests](#2-write-service-layer-tests)
 - [ ] [Implement Service Layer](#3-implement-service-layer)
 - [ ] [Write Repository Tests](#4-write-repository-tests)
@@ -40,7 +44,7 @@ Follow this checklist to set up and build the project using a test-driven approa
 
 ### Testing Strategy: Innermost → Outermost
 
-```
+```bash
 Backend:  Services → Repositories → Controllers
 Frontend: Services → Components
 ```

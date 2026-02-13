@@ -51,7 +51,8 @@ class EmployeeServiceTest {
             "Support Rep",
             null,
             "1993-01-19",
-            "2026-02-11"
+            "2026-02-11",
+            null
         );
 
         // When repo.save is called, just return the object passed in
@@ -73,6 +74,7 @@ class EmployeeServiceTest {
             null,
             null,
             "Support Rep",
+            null,
             null,
             null,
             null

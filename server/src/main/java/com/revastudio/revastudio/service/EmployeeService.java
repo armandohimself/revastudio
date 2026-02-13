@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.revastudio.revastudio.entity.Employee;
 import com.revastudio.revastudio.entity.PII;
 import com.revastudio.revastudio.repo.EmployeeRepository;
+import com.revastudio.revastudio.util.StringUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,16 +38,10 @@ public class EmployeeService {
 
         PII pii = input.getPersonalIdentifiableInformation();
         if (pii == null) throw new IllegalArgumentException("PII is required");
-        if (isBlank(pii.getFirstName())) throw new IllegalArgumentException("First name is required");
-        if (isBlank(pii.getLastName())) throw new IllegalArgumentException("Last name is required");
+        if (StringUtil.isBlank(pii.getFirstName())) throw new IllegalArgumentException("First name is required");
+        if (StringUtil.isBlank(pii.getLastName())) throw new IllegalArgumentException("Last name is required");
 
         // Save (repo is mocked in unit test, real in production)
         return employeeRepo.save(input);
     }
-
-    private boolean isBlank(String s) {
-        return s == null || s.trim().isEmpty();
-    }
-
-
 }

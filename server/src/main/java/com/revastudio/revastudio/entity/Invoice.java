@@ -12,6 +12,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * An invoice is a formal document issued by a seller to a buyer, requesting payment for goods or services provided.
+ * It serves as a detailed record of a transaction.
+ * Outlining the items or services delivered, their quantities, unit prices, total amounts, applicable taxes, and payment terms.
+ * Such as the due date and accepted payment methods.
+ */
 @Entity
 @Table(name = "Invoice")
 @Getter

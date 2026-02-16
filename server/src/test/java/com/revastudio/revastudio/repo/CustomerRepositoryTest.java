@@ -1,7 +1,7 @@
 package com.revastudio.revastudio.repo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import java.util.UUID;
@@ -92,7 +92,7 @@ class CustomerRepositoryTest {
         Customer found = customerRepo.findById(c.getCustomerId()).orElseThrow();
 
         // Assert: FK relationship resolves
-        assertTrue(found.getSupportRep() != null);
+        assertNotNull(found.getSupportRep());
         assertEquals(e.getEmployeeId(), found.getSupportRep().getEmployeeId());
         assertEquals("Support Rep", e.getTitle());
 

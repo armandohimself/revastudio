@@ -15,13 +15,14 @@ Follow this checklist to set up and build the project using a test-driven approa
 ### Phase 1: Project Setup
 
 - [ ] [Set Up Project Skeletons](#1-set-up-project-skeletons)
+- [ ] [Running Tests](#running-tests)
 
 ### Phase 2: Backend Development (Inside-Out)
 
-- [ ] [Create Entities Using Annotations (JPA + Lombok)]()
-- [ ] [Create Basic Repositories (Spring Data JPA)]()
-- [ ] [Write Service Layer Tests](#2-write-service-layer-tests)
-- [ ] [Implement Service Layer](#3-implement-service-layer)
+- [X] [Create Entities Using Annotations (JPA + Lombok)]()
+- [X] [Create Basic Repositories (Spring Data JPA)]()
+- [X] [Write Service Layer Tests](#2-write-service-layer-tests)
+- [X] [Implement Service Layer](#3-implement-service-layer)
 - [ ] [Write Repository Tests](#4-write-repository-tests)
 - [ ] [Implement Repository Layer](#5-implement-repository-layer)
 - [ ] [Write Controller Tests](#6-write-controller-tests)
@@ -84,18 +85,18 @@ Before you begin, verify:
 
 #### Backend Setup (Spring Boot)
 
-**Step 1: Generate Project**
+##### **Step 1: Generate Project**
 
 Use [Spring Initializr](https://start.spring.io/) to create `build.gradle` and place it at the server root.
 
-**Step 2: Build & Download Dependencies**
+##### **Step 2: Build & Download Dependencies**
 
 ```bash
 cd server
 ./gradlew clean build
 ```
 
-**Step 3: Verify Installation**
+##### **Step 3: Verify Installation**
 
 ✅ Success indicators:
 
@@ -105,7 +106,7 @@ cd server
 
 #### Frontend Setup (Angular)
 
-**Step 1: Install Node.js & npm**
+##### **Step 1: Install Node.js & npm**
 
 ```bash
 # Using nvm (recommended)
@@ -117,27 +118,27 @@ node -v
 npm -v
 ```
 
-**Step 2: Install Angular CLI**
+##### **Step 2: Install Angular CLI**
 
 ```bash
 npm install -g @angular/cli@latest
 ng version
 ```
 
-**Step 3: Create Angular Project**
+##### **Step 3: Create Angular Project**
 
 ```bash
 cd client
 ng new revastudio --directory .
 ```
 
-**Step 4: Install Dependencies**
+##### **Step 4: Install Dependencies**
 
 ```bash
 npm install
 ```
 
-**Step 5: Switch to Vitest**
+##### **Step 5: Switch to Vitest**
 
 Remove Jasmine/Karma and install Vitest:
 
@@ -149,7 +150,7 @@ npm i -D vitest @vitest/coverage-v8 happy-dom
 npm rm karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter jasmine-core
 ```
 
-**Step 6: Verify Setup**
+##### **Step 6: Verify Setup**
 
 ```bash
 # Start dev server
@@ -538,3 +539,7 @@ Track your progress:
 ---
 
 > **🚀 Ready to start?** Follow the checklist from the top and work through each phase systematically!
+
+NullPointerException - For unexpected nulls (but IllegalArgumentException is better for validation)
+IllegalStateException - When the object's state is invalid for the operation
+Custom exceptions - Like CustomerNotFoundException for domain-specific errors

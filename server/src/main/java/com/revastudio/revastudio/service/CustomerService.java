@@ -11,7 +11,17 @@ import com.revastudio.revastudio.util.StringUtil;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @Service (Spring)
+ * This annotation registers this class as a Spring-managed component (aka a "bean"),
+ * so Spring will inject it where needed (in your controllers, other services, etc).
+ */
 @Service
+/**
+ * @RequiredArgsConstructor (Lombok)
+ * This annotation generates a constructor for all final fields.
+ * This is the cleanest form of DI because the dependency is immutable and can't be null. 
+ */
 @RequiredArgsConstructor
 public class CustomerService {
 

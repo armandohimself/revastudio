@@ -40,7 +40,7 @@ public class Customer {
      * @ManyToOne: Many Customer rows relate to one Employee row.
      * fetch = LAZY (lazy loading): Load the Employee object later when you access it.
         * This is called Hibernate Proxy meaning supportRep gets a placeholder until you call it.
-        * If called outside the DB transaction, like if DB closed, then you get a LazyInitializationException
+        * If called outside the DB transaction, like if DB closed, then you get a LazyInitializationException¸
         * Usher is backstage for now.
      * optional = true: “This relationship can be null” (FK column can be nullable)
      */

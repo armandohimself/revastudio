@@ -33,9 +33,16 @@ class CustomerRepositoryTest {
 
         // Act
         customerRepo.save(c);
+
+        /**
+         * findById().orElseThrow() is needed because:
+         * findById returns an Optional which is a container that MAY or MAY NOT have the value.
+         * --> Optional<Customer> is what's being returned.
+         */
         Customer found = customerRepo.findById(c.getCustomerId()).orElseThrow();
 
         // Assert
+        
         /**
          * JUnit
          * assertEquals(actual, expected)

@@ -542,4 +542,77 @@ Track your progress:
 
 NullPointerException - For unexpected nulls (but IllegalArgumentException is better for validation)
 IllegalStateException - When the object's state is invalid for the operation
+NotFoundException -
+RuntimeException -
 Custom exceptions - Like CustomerNotFoundException for domain-specific errors
+
+
+## What is Optional in plain English?
+
+Optional is a box that may or may not contain a value.
+
+```java
+Optional<Customer> = “maybe I found a customer, maybe not.”
+```
+
+**Why Java does this:**
+to avoid returning null and causing `NullPointerException`
+
+**So instead of:**
+
+```java
+Customer found = customerRepo.findById(id); // might be null
+```
+
+**Java says:**
+
+```java
+Optional<Customer> found = customerRepo.findById(id); // explicit “maybe”
+```
+
+> Common Optional methods (mental model)
+
+**Assume:**
+
+```java
+Optional<Customer> opt = ...
+```
+
+  - opt.isPresent() → “is there something in the box?”
+  - opt.get() → “open the box” (dangerous if empty)
+  - opt.orElse(x) → “if empty, use x”
+  - opt.orElseGet(() -> x) → “if empty, compute x lazily”
+  - opt.orElseThrow() → “if empty, throw”
+  - opt.orElseThrow(() -> new NotFoundException(...)) → “throw a custom exception”
+
+
+## when (Mockito)
+
+Examples:
+
+
+ when(mock.someMethod()).thenReturn(10);
+
+ //you can use flexible argument matchers, e.g:
+ when(mock.someMethod(anyString())).thenReturn(10);
+
+ //setting exception to be thrown:
+ when(mock.someMethod("some arg")).thenThrow(new RuntimeException());
+
+ //you can set different behavior for consecutive method calls.
+ //Last stubbing (e.g: thenReturn("foo")) determines the behavior of further consecutive calls.
+ when(mock.someMethod("some arg"))
+  .thenThrow(new RuntimeException())
+  .thenReturn("foo");
+
+ //Alternative, shorter version for consecutive stubbing:
+ when(mock.someMethod("some arg"))
+  .thenReturn("one", "two");
+ //is the same as:
+ when(mock.someMethod("some arg"))
+  .thenReturn("one")
+  .thenReturn("two");
+
+ //shorter version for consecutive method calls throwing exceptions:
+ when(mock.someMethod("some arg"))
+  .thenThrow(new RuntimeException(), new NullPointerException();

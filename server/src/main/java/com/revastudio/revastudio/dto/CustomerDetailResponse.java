@@ -5,8 +5,8 @@ import java.util.UUID;
 public record CustomerDetailResponse(
     UUID customerId,
     String company,
-    UUID supportRepId,
-    String supportRepName,
+    PIIDto pii,
     AddressDto address,
-    PIIDto pii
+    UUID supportRepId,
+    String supportRepName
 ) {}

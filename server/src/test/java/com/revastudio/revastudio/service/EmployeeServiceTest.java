@@ -34,6 +34,10 @@ class EmployeeServiceTest {
     @Mock
     private EmployeeRepository employeeRepo;
 
+    /**
+     * @InjectMocks (Mockito)
+     * Solves:
+     */
     @InjectMocks
     private EmployeeService employeeService;
 
@@ -56,6 +60,11 @@ class EmployeeServiceTest {
         );
 
         // When repo.save is called, just return the object passed in
+        /**
+         * @when
+         * Simply put: "When the x method is called then return y".
+         * 
+         */
         when(employeeRepo.save(any(Employee.class))).thenAnswer(inv -> inv.getArgument(0));
 
         // Act

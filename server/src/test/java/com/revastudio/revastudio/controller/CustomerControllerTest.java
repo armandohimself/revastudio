@@ -8,8 +8,9 @@ import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.revastudio.revastudio.dto.CustomerDetailResponse;
@@ -23,14 +24,16 @@ import com.revastudio.revastudio.service.CustomerService;
 /**
  * @WebMvcTest
  * Boots ONLY the web layer (controller + JSON), not the whole app.
+ * By saying CustomerController.class, you're saying ONLY load this controller.
+ * Otherwise @WebMvcTest can scan/load multiple controllers getting extra beans, ambiguous mapping, & more things to mock.
  */
-@WebMvcTest
+@WebMvcTest(CustomerController.class)
 class CustomerControllerTest {
 
     @Autowired              // Inject dependency for us Spring during runtime when we need it.
     MockMvc mockMvc;        // Lets you call your controller like a real HTTP request (w/o server running).
 
-    @MockitoBean
+    @MockBean                        //
     CustomerService customerService;
 
     @Test

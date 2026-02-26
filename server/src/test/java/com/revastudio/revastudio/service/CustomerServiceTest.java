@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.revastudio.revastudio.dto.CreateCustomerDto;
 import com.revastudio.revastudio.entity.Address;
 import com.revastudio.revastudio.entity.Customer;
 import com.revastudio.revastudio.entity.PII;
@@ -43,10 +44,10 @@ class CustomerServiceTets {
         when(customerRepo.save(any(Customer.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         // Act
-        Customer createdCustomer = customerService.create(newCustomer);
+        CreateCustomerDto createdCustomer = customerService.createCustomer(newCustomer);
 
         // Assert
-        assertNotNull(createdCustomer.getCustomerId(), "CustomerId should be generated");
+        assertNotNull(createdCustomer.customerId(), "CustomerId should be generated");
         verify(customerRepo, times(1)).save(any(Customer.class));
     }
 
@@ -54,7 +55,7 @@ class CustomerServiceTets {
     void create_throws_whenPIIMissing() {
         Customer createdCustomer = new Customer(null, null, null, null, null);
 
-        assertThrows(IllegalArgumentException.class, () -> customerService.create(createdCustomer));
+        assertThrows(IllegalArgumentException.class, () -> customerService.createCustomer(createdCustomer));
         verify(customerRepo, never()).save(any()); // should not save invalid data
     }
 }

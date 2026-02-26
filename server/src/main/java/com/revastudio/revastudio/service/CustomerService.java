@@ -4,9 +4,13 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.revastudio.revastudio.dto.CreateCustomerDto;
+import com.revastudio.revastudio.dto.CustomerDetailResponse;
+import com.revastudio.revastudio.dto.PIIDto;
+import com.revastudio.revastudio.dto.mapper.CustomerMapper;
 import com.revastudio.revastudio.entity.Customer;
-import com.revastudio.revastudio.entity.PII;
 import com.revastudio.revastudio.repo.CustomerRepository;
+import com.revastudio.revastudio.util.DTOHelper;
 import com.revastudio.revastudio.util.StringUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -32,32 +36,39 @@ public class CustomerService {
      */
     private final CustomerRepository customerRepo;
 
-    public Customer create(Customer input) {
+    //! CREATE
+    public CreateCustomerDto createCustomer(Customer customer) {
 
         /**
         * @IllegalArgumentException is a runtime exception thrown when a method receives an invalid or inappropriate argument.
-        * Used here for input validation to signal that the caller provided bad data (null, blank, etc).
+        * Used here for customer validation to signal that the caller provided bad data (null, blank, etc).
         * This is an unchecked exception, so callers aren't forced to handle it.
         */
-        if (input == null) { throw new IllegalArgumentException("Customer cannot be null"); }
+        if (customer == null) { throw new IllegalArgumentException("Customer cannot be null"); }
 
         // Generate ID in service
-        if (input.getCustomerId() == null) {
-            input.setCustomerId(UUID.randomUUID());
+        if (customer.getCustomerId() == null) {
+            customer.setCustomerId(UUID.randomUUID());
         }
 
-        /**
-         * @IllegalArgumentException is a runtime exception thrown when a method receives an invalid or inappropriate argument.
-         * Used here, we are validating PII to signal that the caller provided bad data (null, blank, etc).
-         * This is an unchecked exception, so callers aren't forced to handle it unlike try-catch. 
-         */
-        PII pii = input.getPersonalIdentifiableInformation();
-        if (pii == null) { throw new IllegalArgumentException("PII is required"); }
+        PIIDto pii = DTOHelper.extractPII(customer.getPersonalIdentifiableInformation());
 
-        if(StringUtil.isBlank(pii.getFirstName())) { throw new IllegalArgumentException("FirstName is required"); }
-        if(StringUtil.isBlank(pii.getLastName())) { throw new IllegalArgumentException("LastName is required"); }
+        if(StringUtil.isBlank(pii.firstName())) { throw new IllegalArgumentException("FirstName is required"); }
+        if(StringUtil.isBlank(pii.lastName())) { throw new IllegalArgumentException("LastName is required"); }
 
-        return customerRepo.save(input);
+        Customer saved = customerRepo.save(customer);
+
+        return CustomerMapper.toCreateResponse(saved);
+    }
+
+    //! GET
+    public CustomerDetailResponse getCustomerDetail(UUID customerId) {
+
+        if (customerId == null) { throw new IllegalArgumentException("CustomerId cannot be null"); }
+
+        Customer customer = customerRepo.findById(customerId).orElseThrow();
+
+        return CustomerMapper.toDetailResponse(customer);
     }
 
 }
